@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <CENTER>
+        <p style="font-family: Arial, Helvetica, sans-serif; color: black; font-size: 90%">Informe a quantidade de discos:</p>
+        <input value="3" id="num_disco" type="number" style="font-family: Arial, Helvetica, sans-serif; color: red; font-size: 90%"></input>
+
+
+        <button style="font-family: Arial, Helvetica, sans-serif; color: black; font-size: 90%" onclick='iniciar_torre_de_hanoi()'>Resolver</button>
+    </CENTER>
+
+    <hr/>
+    <div id="solucionar" />
+
+
+    <script>
+        var Solução = "";
+
+        function iniciar_torre_de_hanoi() {
+            var n_disco = document.getElementById("num_disco").value;
+            Solução = "Solução: <br/>";
+
+            resolver_torre_de_hanoi(n_disco, "PINO 1", "PINO 3", "PINO 2");
+            document.getElementById("solucionar").innerHTML = Solução;
+        }
+
+        function resolver_torre_de_hanoi(discos, pino1, pino3, pino2) {
+            if (discos == 1) {
+
+                Solução += "Mova o disco 1 do " + pino1 + " >>>>> " + pino3 + ".<br/>";
+
+            } else {
+
+                resolver_torre_de_hanoi(discos - 1, pino1, pino2, pino3);
+
+
+                Solução += "Mova o disco " + discos + " do " + pino1 + " >>>>> " + pino3 + ".<br/>";
+
+
+                resolver_torre_de_hanoi(discos - 1, pino2, pino3, pino1);
+            }
+        }
+    </script>
+</body>
+
+</html>
